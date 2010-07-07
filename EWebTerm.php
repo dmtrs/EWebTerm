@@ -1,4 +1,15 @@
 <?php
+/*
+ * EWebTerm
+ *
+ * DESCRIPTION
+ *
+ *  This is a Yii framework extension that implements
+ * the jQuery Wterm plugin ( http://plugins.jquery.com/project/wterm )
+ *
+ * @author Dimitrios Meggidis: tydeas.dr[at]gmail[dot]com
+ * @link http://github.com/dmtrs/EWebTerm
+ **/
 class EWebTerm extends CWidget 
 {
     public $htmlOptions;
