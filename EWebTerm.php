@@ -7,6 +7,7 @@
  *  This is a Yii framework extension that implements
  * the jQuery Wterm plugin ( http://plugins.jquery.com/project/wterm )
  *
+ * @version 0.1
  * @author Dimitrios Meggidis: tydeas.dr[at]gmail[dot]com
  * @link http://github.com/dmtrs/EWebTerm
  **/

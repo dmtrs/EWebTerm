@@ -1,0 +1,9 @@
+EWebTerm CHANGELOG
+==================
+
+Version 0.1
+-----------
+* Minimal functionality of wterm implemented
+* User can init. width, height, welcome_message
+* Register commands possible
+* CssFile register ( not tested yet )
