@@ -45,8 +45,8 @@ class EWebTerm extends CWidget
 
     public function init() 
     { 
-        $this->id = (isset($this->htmlOptions['id'])) ?
-            $this->htmlOptions['id'] : 'wterm';
+        if (!isset($this->htmlOptions['id'])) 
+            $this->htmlOptions['id'] = 'wterm';
         $jsen = array();
 
         $dir=dirname(__FILE__).DIRECTORY_SEPARATOR.'wterm';
@@ -70,25 +70,32 @@ class EWebTerm extends CWidget
         $ops = (!empty($jsen)) ? $jsen : '{}' ;
 
         $cs->registerScript(
-            'Yii.EWebTerm#'.$this->id,
-            "$('#$this->id').wterm($ops);"
+            'Yii.EWebTerm#'.$this->htmlOptions['id'],
+            "$('#".$this->htmlOptions['id']."').wterm($ops);"
         );
         $this->registerCommands($cs);
     }
 
     public function run()
     {
-        echo CHtml::tag('div', array('id'=>$this->id));
+        echo CHtml::tag('div', $this->htmlOptions );
     }
 
     protected function registerCommands( $cs )
     {
         foreach ( $this->commands as $name => $attr ) {
-            $cs->registerScript(
-                $this->id."_".$name,
-                "$.register_command( '$name' , ".$attr['return'].");",
-                CClientScript::POS_END
-            );
+            if (isset($attr['body']))
+                $cs->registerScript(
+                    $this->id."_".$name,
+                    "$.register_command( '$name' , ".$attr['body'].");",
+                    CClientScript::POS_END
+                );
+            else if(isset($attr['url']))
+                $cs->registerScript(
+                    $this->id."_".$name,
+                    "$.register_command( '$name' , '".$attr['url']."');",
+                    CClientScript::POS_END
+                );
         }
     }
 }
